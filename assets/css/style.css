@@ -1,0 +1,7 @@
+#all-aboard {
+	background-color: transparent !important;
+}
+
+#add-rocket > input {
+	display: block;
+}
