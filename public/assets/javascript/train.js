@@ -14,6 +14,13 @@ $(document).ready(function(){
 	var destination = "";
 	var launchTime = "";
 	var frequency = "";
+	    // First Time (pushed back 1 year to make sure it comes before current time)
+    var launchTimeConverted = moment(launchTime, "k:mm").subtract(1, "years");
+    console.log(launchTimeConverted);
+    $('#firstLaunch').datetimepicker({
+    dateFormat: '',
+    timeFormat: 'hh:mm tt'
+});
 //click event sets varialbles to input values
 	$("#submitButton").on("click", function(event) {
 		event.preventDefault();
@@ -39,7 +46,9 @@ $(document).ready(function(){
 		var lastIndex = caughtArrays.length - 1;
 		var lastValue = caughtArrays[lastIndex];
 		var lastObj = caughtValue[lastValue];
-		var addRow = "<tr><td>" + lastObj.name + "</td><td>" + lastObj.destination + "</td><td>" + lastObj.launchTime + "</td><td>" + lastObj.frequency + "</td></tr>";
+		var addRow = "<tr><td>" + lastObj.name + "</td><td>" + lastObj.destination + "</td><td>" + lastObj.frequency + "</td><td>" + lastObj.launchTime + "</td></tr>";
 	    $("#all-rockets").append(addRow);
 	});
+
+
 });
