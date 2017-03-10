@@ -17,9 +17,10 @@ $(document).ready(function(){
 	    // First Time (pushed back 1 year to make sure it comes before current time)
     var launchTimeConverted = moment(launchTime, "k:mm").subtract(1, "years");
     console.log(launchTimeConverted);
-    $('#firstLaunch').datetimepicker({
+    $('#firstLaunch').timepicker({
     dateFormat: '',
-    timeFormat: 'hh:mm tt'
+    timeFormat: 'H:i',
+    step: 1
 });
 //click event sets varialbles to input values
 	$("#submitButton").on("click", function(event) {
