@@ -10,14 +10,13 @@ $(document).ready(function(){
 	firebase.initializeApp(config);
 //global variables
 	var database = firebase.database();
-	var name = "";
-	var destination = "";
-	var launchTime = "";
-	var frequency = "";
-	    // First Time (pushed back 1 year to make sure it comes before current time)
-    var launchTimeConverted = moment(launchTime, "k:mm").subtract(1, "years");
-    console.log(launchTimeConverted);
-    $('#firstLaunch').timepicker({
+	var name;
+	var destination;
+	var launchTime;
+	var frequency;
+	var currentTime = moment();
+	
+	$('#firstLaunch').timepicker({
     dateFormat: '',
     timeFormat: 'H:i',
     step: 1
@@ -29,7 +28,8 @@ $(document).ready(function(){
 		destination = $("#rocketDestination").val().trim();
 		launchTime = $("#firstLaunch").val().trim();
 		frequency = $("#rocketFrequency").val().trim();
-//input values at time of submissioin are pushed to database
+
+//input values at time of submission are pushed to database
 
 		database.ref().push({
 			name: name,
@@ -38,18 +38,30 @@ $(document).ready(function(){
 			frequency: frequency
 		});
 	});
-
-	database.ref().on("value", function(snapshot){
+	database.ref().on("child_added", function(snapshot, lastKey){
 		var caughtValue = snapshot.val();
-//organize input values into an array 
-		var caughtArrays = Object.keys(caughtValue);
-//grab the last captured value to add a new record in the UI
-		var lastIndex = caughtArrays.length - 1;
-		var lastValue = caughtArrays[lastIndex];
-		var lastObj = caughtValue[lastValue];
-		var addRow = "<tr><td>" + lastObj.name + "</td><td>" + lastObj.destination + "</td><td>" + lastObj.frequency + "</td><td>" + lastObj.launchTime + "</td></tr>";
+		var name = snapshot.val().name;
+		var destination = snapshot.val().destination;
+		var launchTime = snapshot.val().launchTime;
+		var currentTime = moment();
+		console.log("launchTime", launchTime)
+		var frequency = snapshot.val().frequency;
+		console.log("frequency", frequency)
+    	var convertedTime = moment(launchTime, "HH:mm");
+		console.log("convertedTime", convertedTime);
+		var minuteDiff = currentTime.diff(convertedTime);
+		console.log("minuteDiff", minuteDiff);
+		var elapsedMinutes = moment.duration(minuteDiff).asMinutes();
+		var timeSinceLastTrain = elapsedMinutes % frequency;
+		console.log("timeSinceLastTrain", timeSinceLastTrain);
+		var minutesAway = frequency - timeSinceLastTrain;
+		console.log("minutesAway", minutesAway);
+	    var nextTrain = currentTime.add(minutesAway, "minutes");
+	    console.log("nextTrain", nextTrain);
+	    var nextTrainTime = nextTrain.format("HH:mm")
+
+		var addRow = "<tr><td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrainTime + "</td><td>" + minutesAway + "</td></tr>";
 	    $("#all-rockets").append(addRow);
+
 	});
-
-
 });
