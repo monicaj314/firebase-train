@@ -19,7 +19,8 @@ $(document).ready(function(){
 	$('#firstLaunch').timepicker({
     dateFormat: '',
     timeFormat: 'H:i',
-    step: 1
+    step: 1,
+    scrollDefault: "12:00"
 });
 //click event sets varialbles to input values
 	$("#submitButton").on("click", function(event) {
@@ -55,12 +56,13 @@ $(document).ready(function(){
 		var timeSinceLastTrain = elapsedMinutes % frequency;
 		console.log("timeSinceLastTrain", timeSinceLastTrain);
 		var minutesAway = frequency - timeSinceLastTrain;
+		var actualMinutesAway = minutesAway.toFixed(0);
 		console.log("minutesAway", minutesAway);
 	    var nextTrain = currentTime.add(minutesAway, "minutes");
 	    console.log("nextTrain", nextTrain);
 	    var nextTrainTime = nextTrain.format("HH:mm")
 
-		var addRow = "<tr><td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrainTime + "</td><td>" + minutesAway + "</td></tr>";
+		var addRow = "<tr><td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrainTime + "</td><td>" + actualMinutesAway + "</td></tr>";
 	    $("#all-rockets").append(addRow);
 
 	});
