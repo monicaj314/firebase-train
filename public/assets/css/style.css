@@ -1,8 +1,66 @@
+body {
+	background-image: url('../images/rocket-man.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+}
+td {
+	background-color: #003C00;
+	color: white;
+	border-radius: 10px;
+	font-family: "Courier", serif;
+}
+
 #all-aboard {
 	background-color: transparent !important;
 	font-family: "Audiowide", sans-serif;
+	text-shadow: -2px 3px 2px #DEE9B7;
+}
+
+#launch-schedule {
+	width: 90%;
+	margin:auto;
 }
 
 #add-rocket > input {
 	display: block;
+	background-color: black;
+	color: white;
+	font-family: "Courier", serif;
+}
+#add-rocket-div {
+	width: 90%;
+	margin:auto;
+}
+
+#submitButton {
+	margin-top: 10px;
+}
+
+.div-container {
+	font-family: "Orbitron", sans-serif;
+	background-color: transparent;
+}
+.div-heading {
+	font-size: 1.5em;
+	background-color: black;
+	color: white;
+	padding: 5px 0 3px 10px;
+	line-height: 1.5;
+	border-radius: 7px;
+}
+.table-column-header {
+	background-color: black;
+	color: white;
+	line-height: 1.5;
+	border-radius: 7px;
+	text-align:center;
+	margin-left: 2px;
+}
+.form-column-header {
+	background-color: black;
+	color: white;
+	padding: 10px;
+	line-height: 1.5;
+	border-radius: 10px;
+	margin-top: 10px;
 }

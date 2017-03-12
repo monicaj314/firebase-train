@@ -37,47 +37,47 @@
             <h2 class="text-center">Land on the Moon</h2>
         </div>
     </div>
-    <div class="panel panel-default div-container">
+    <div id="launch-schedule" class="panel div-container">
         <div class="panel-heading">
-            <h3 class="panel-title">Current Launch Schedule</h3>
+            <h3 class="panel-title div-heading">Current Launch Schedule</h3>
         </div>
       
         <table id="all-rockets" class="table">
             <tr>
-                <th>
+                <th class="table-column-header">
                 Rocket Name
                 </th>
-                <th>
+                <th class="table-column-header">
                 Destination
                 </th>
-                <th>
+                <th class="table-column-header">
                 Frequency (minutes)
                 </th>
-                <th>
+                <th class="table-column-header">
                 Next Arrival
                 </th>
-                <th>
+                <th class="table-column-header">
                 Minutes Away
                 </th>
             </tr>
         </table>
     </div>
 
-    <div class="panel panel-default div-container">
+    <div id="add-rocket-div" class="panel add-rocket-div div-container">
       <div class="panel-heading">
-        <h3 class="panel-title">Add Rocket</h3>
+        <h3 class="panel-title div-heading">Add Rocket</h3>
       </div>
       <div class="panel-body">
           <form id="add-rocket" class="form-group" type="submit">
-              <label for="text">Rocket Name</label>
+              <label for="text" class="form-column-header">Rocket Name</label>
               <input id="rocketName" class="form-control" type="text">
-              <label for="text"> Destination</label>
+              <label for="text" class="form-column-header"> Destination</label>
               <input id="rocketDestination" class="form-control" type="text">
-              <label for="text">First Launch Time (HH:mm - military time)</label>
+              <label for="text" class="form-column-header">First Launch Time (HH:mm - military time)</label>
               <input id="firstLaunch" class="form-control" type="text">
-              <label for="text">Frequency (minutes)</label>
-              <input id="rocketFrequency" class="form-control" type="number">
-              <input id="submitButton" class="btn btn-primary" type="button" value="Submit">
+              <label for="text" class="form-column-header">Frequency (minutes)</label>
+              <input id="rocketFrequency" class="form-control" type="number" class="form-column-header">
+              <input id="submitButton" class="btn btn-success" type="button" value="Submit">
           <form>
       </div>
     </div>
