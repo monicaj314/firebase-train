@@ -19,16 +19,19 @@ $(document).ready(function(){
 	$('#firstLaunch').timepicker({
     dateFormat: '',
     timeFormat: 'H:i',
-    step: 1,
+    step: 5,
     scrollDefault: "12:00"
 });
-//click event sets varialbles to input values
+//click event sets variables to input values
+	
 	$("#submitButton").on("click", function(event) {
 		event.preventDefault();
 		name = $("#rocketName").val().trim();
 		destination = $("#rocketDestination").val().trim();
 		launchTime = $("#firstLaunch").val().trim();
 		frequency = $("#rocketFrequency").val().trim();
+		if (name !== "" && destination !== "" && frequency !== "") {
+	
 
 //input values at time of submission are pushed to database
 
@@ -38,6 +41,13 @@ $(document).ready(function(){
 			launchTime: launchTime,
 			frequency: frequency
 		});
+
+	    $("#rocketName").val('');
+	    $("#rocketDestination").val('');
+	    $("#firstLaunch").val('');
+	    $("#rocketFrequency").val('');
+
+	}
 	});
 	database.ref().on("child_added", function(snapshot, lastKey){
 		var caughtValue = snapshot.val();
@@ -63,7 +73,6 @@ $(document).ready(function(){
 	    var nextTrainTime = nextTrain.format("HH:mm")
 
 		var addRow = "<tr><td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrainTime + "</td><td>" + actualMinutesAway + "</td></tr>";
-	    $("#all-rockets").append(addRow);
-
+		$("#all-rockets").append(addRow);
 	});
 });
